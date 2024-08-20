@@ -1,0 +1,23 @@
+<?php
+session_start();
+
+
+$item_id = $_POST['food_id'];
+$quantity = $_POST['quantity'];
+
+if (isset($_SESSION['cart'][$item_id])) {
+  $_SESSION['cart'][$item_id]['quantity'] += $quantity;
+} else {
+  // Get item details from the database
+  // ...
+  // Add item to cart
+  $_SESSION['cart'][$item_id] = array(
+    'name' => $name,
+    'price' => $price,
+    'quantity' => $quantity
+  );
+}
+
+header('Location: shopping_cart.php');
+exit;
+?>
